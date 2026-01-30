@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farwaa 💖🌌</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+body{
+  margin:0;
+  height:100vh;
+  overflow:hidden;
+  font-family:'Poppins',sans-serif;
+  background:#0b0c2b;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  color:white;
+}
+
+/* Night sky stars */
+.star{
+  position:absolute;
+  background:white;
+  border-radius:50%;
+  opacity:0.8;
+  animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+  from{opacity:0.3;}
+  to{opacity:1;}
+}
+
+.slide{
+  display:none;
+  background:rgba(0,0,20,0.85);
+  padding:25px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(255,255,255,0.2);
+  max-width:360px;
+  animation:pop 0.8s ease;
+  position:relative;
+  z-index:1;
+}
+
+.slide.active{display:block}
+
+@keyframes pop{
+  from{transform:scale(.7);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  color:#ffaadf;
+  text-shadow:0 0 10px rgba(255,170,223,0.6);
+}
+
+p{
+  font-size:15px;
+  line-height:1.8;
+  color:#fff;
+}
+
+button{
+  padding:14px 36px;
+  font-size:16px;
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+  margin-top:12px;
+}
+
+.yes{
+  background:#ff2f6d;
+  color:#fff;
+  box-shadow:0 10px 25px rgba(255,47,109,.5);
+}
+
+.yes.glow{
+  animation:glow 1s infinite alternate;
+}
+
+@keyframes glow{
+  0%{box-shadow:0 0 10px rgba(255,47,109,.5);}
+  50%{box-shadow:0 0 25px rgba(255,47,109,1);}
+  100%{box-shadow:0 0 10px rgba(255,47,109,.5);}
+}
+
+.no{
+  background:#ffe0ea;
+  color:#ff2f6d;
+}
+
+.heart,.magic-heart{
+  position:absolute;
+  animation:float 6s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes float{
+  from{transform:translateY(110vh) scale(1);opacity:1;}
+  to{transform:translateY(-10vh) scale(1.6);opacity:0;}
+}
+
+/* FINAL SLIDE */
+.final{
+  background:rgba(0,0,20,0.85);
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  padding:30px;
+}
+
+.final h1{
+  color:#ffaadf;
+  text-shadow:0 0 12px rgba(255,170,223,0.7);
+}
+
+.divider{
+  font-size:22px;
+  margin:18px 0;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0e8c9c5d36.mp3">
+</audio>
+
+<audio id="evil">
+  <source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_1a8a1e1f9c.mp3">
+</audio>
+
+<!-- Slide 1 -->
+<div class="slide active" id="slide1">
+  <h1>Partnerr 😍💖</h1>
+  <p>Hey! Do you like me a little? 🥺💞</p>
+  <button class="yes" onclick="nextSlide(2)">Yes 😳</button>
+  <button class="no" onclick="nextSlide(2)">No 😤</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="slide2">
+  <h1>Think again 😌</h1>
+  <p>Last chance! You can say yes 💞</p>
+  <button class="yes" onclick="nextSlide(3)">Yes 😭❤️</button>
+  <button class="no" onclick="nextSlide(3)">No 🙄</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="slide3">
+  <h1>Final 😘💍</h1>
+  <p>Your heart already knows the answer 💖</p>
+  <button class="yes glow" onclick="nextSlide(4)">Yes 🤞💖</button>
+  <button class="no" id="no3" onmouseover="noHover()">No? 😈</button>
+</div>
+
+<!-- Slide 4 (ROMANTIC NIGHT) -->
+<div class="slide final" id="slide4">
+  <h1>Forever & Always 💍</h1>
+  <div class="divider">💖 ✨ 💕 ✨ 💖</div>
+
+  <p>
+    Farwa, from the very first moment our paths crossed, my heart chose you without hesitation. 💞  
+    You entered my life like a beautiful blessing, turning ordinary days into memories I want to keep forever. 😌✨  
+    Your smile feels like home, your voice brings me peace, and your presence makes my world complete. 🥰  
+    With you, love feels effortless, pure, and endlessly comforting. ❤️  
+    I want to walk beside you through every high and low, hold your hand in silence, and celebrate life’s loudest joys with you. 🌹  
+    I promise to love you with patience, protect you with strength, and cherish you with all my heart — today, tomorrow, and always. 💍  
+    You are not just my love, you are my forever, my answered prayer, and my greatest blessing. 💖✨  
+    <br><br>
+    <strong>Forever yours, Mrs. Hasnain 💕</strong>
+  </p>
+</div>
+
+<script>
+const music=document.getElementById("music");
+const evil=document.getElementById("evil");
+music.volume=0.4;
+evil.volume=0.8;
+
+document.body.addEventListener("click",()=>music.play(),{once:true});
+
+// Generate stars
+for(let i=0;i<100;i++){
+  const star=document.createElement("div");
+  star.className="star";
+  const size=Math.random()*3+1+"px";
+  star.style.width=size;
+  star.style.height=size;
+  star.style.top=Math.random()*100+"vh";
+  star.style.left=Math.random()*100+"vw";
+  star.style.animationDuration=(1+Math.random()*2)+"s";
+  document.body.appendChild(star);
+}
+
+// Slide navigation
+function nextSlide(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.getElementById('slide'+n).classList.add('active');
+  if(n===4){setInterval(createMagicHeart,400);}
+}
+
+// NO button escape
+function noHover(){
+  evil.currentTime=0;
+  evil.play();
+  const btn=document.getElementById("no3");
+  btn.style.position="absolute";
+  btn.style.left=Math.random()*80+"vw";
+  btn.style.top=Math.random()*80+"vh";
+}
+
+// Floating hearts
+function createMagicHeart(){
+  const h=document.createElement("div");
+  h.className="magic-heart";
+  h.innerHTML=["💖","💕","✨","💘","❤️","😍"][Math.floor(Math.random()*6)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(18+Math.random()*25)+"px";
+  h.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+}
+</script>
+
+</body>
+</html>
